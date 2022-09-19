@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="cdt.managedbuild.toolchain.gnu.cross.base.2017513952">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.toolchain.gnu.cross.base.2017513952" moduleId="org.eclipse.cdt.core.settings" name="Default">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildProperties="" description="" id="cdt.managedbuild.toolchain.gnu.cross.base.2017513952" name="Default" optionalBuildProperties="org.eclipse.cdt.docker.launcher.containerbuild.property.selectedvolumes=,org.eclipse.cdt.docker.launcher.containerbuild.property.volumes=" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="cdt.managedbuild.toolchain.gnu.cross.base.2017513952.719946376" name="/" resourcePath="">
+						<toolChain id="cdt.managedbuild.toolchain.gnu.cross.base.691515268" name="Cross GCC" superClass="cdt.managedbuild.toolchain.gnu.cross.base">
+							<option id="cdt.managedbuild.option.gnu.cross.prefix.1545074478" name="Prefix" superClass="cdt.managedbuild.option.gnu.cross.prefix"/>
+							<option id="cdt.managedbuild.option.gnu.cross.path.19847387" name="Path" superClass="cdt.managedbuild.option.gnu.cross.path"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.2021194548" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<builder id="cdt.managedbuild.builder.gnu.cross.2039379593" keepEnvironmentInBuildfile="false" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.compiler.1674097719" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.include.paths.749024012" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/arm-linux-gnueabihf/sysroot/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/arm-linux-gnueabihf/sysroot/usr/include/linux"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/pgpio"/>
+									<listOptionValue builtIn="false" value="/home/onion/robotics/drivers/raspberrypi/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/robotics/framework/raspberrypi/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/wiringpi"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/libcamera/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/boost/include"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.c.compiler.option.preprocessor.def.symbols.939445663" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="DEBUG_MODE=1"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1018401280" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.857592602" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1801390171" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/arm-linux-gnueabihf/sysroot/usr/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/pigpio"/>
+									<listOptionValue builtIn="false" value="/home/onion/robotics/drivers/raspberrypi/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/robotics/framework/raspberrypi/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/raspicam/src"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/wiringpi"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/libcamera/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/boost/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/include/c++/10.3.1"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/include/c++/10.3.1/bits"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.preprocessor.def.217179131" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="DEBUG_MODE=1"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1534655617" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.c.linker.1118195011" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.128780540" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.paths.1023725271" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/raspicam/build/src"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/libcamera/lib"/>
+								</option>
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.link.option.libs.1644175776" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="/home/onion/raspberrypi/libs/wiringpi/libwiringPi.so"/>
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="/home/onion/raspberrypi/libs/wiringpi/libwiringPiDev.so"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.833142409" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.474820256" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.assembler.2062537108" name="Cross GCC Assembler" superClass="cdt.managedbuild.tool.gnu.cross.assembler">
+								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.both.asm.option.include.paths.381605007" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/wiringpi"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/libcamera/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/boost/include"/>
+								</option>
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1473220390" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule buildDir="build/${ConfigName}" moduleId="de.marw.cdt.cmake.core.settings">
+				<options/>
+				<defs/>
+				<undefs/>
+				<linux command="cmake" generator="UnixMakefiles" use-default="true">
+					<defs/>
+					<undefs/>
+				</linux>
+			</storageModule>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="raspberrypi.null.483850426" name="raspberrypi"/>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Default">
+			<resource resourceType="PROJECT" workspacePath="/raspberrypi-drivers"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.cross.base.2017513952;cdt.managedbuild.toolchain.gnu.cross.base.2017513952.719946376;cdt.managedbuild.tool.gnu.cross.c.compiler.1674097719;cdt.managedbuild.tool.gnu.c.compiler.input.1018401280">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.toolchain.gnu.cross.base.2017513952;cdt.managedbuild.toolchain.gnu.cross.base.2017513952.719946376;cdt.managedbuild.tool.gnu.cross.cpp.compiler.857592602;cdt.managedbuild.tool.gnu.cpp.compiler.input.1534655617">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="0.1667586368">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile"/>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>
