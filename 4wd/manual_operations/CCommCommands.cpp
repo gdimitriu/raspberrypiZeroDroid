@@ -51,6 +51,11 @@ CCommCommands::CCommCommands(CCommand *move, CCommand *setting) {
 	m_menu->append("t# Stop streaming camera\t;\n");
 	m_menu->append("Go/c# grab the object using claw (o for open c for close)\t;\n");
 	m_menu->append("p# print the menu\t;\n");
+	m_menu->append("Nxxx# add command to navigation data\t;\n");
+	m_menu->append("n# clear command list from memory\t;\n");
+	m_menu->append("Nfs/lxxx# save/load navigation from memory to/from a file\t;\n");
+	m_menu->append("D# move direct using navigation from memory\t;\n");
+	m_menu->append("B# move reverse using navigation from memory\t;\n");
 	m_isRecording = false;
 	m_localOperations.insert('R'); //start/stop recording of movement
 	m_localOperations.insert('P'); //play the recording of movement or play in reverse the recording
@@ -59,6 +64,10 @@ CCommCommands::CCommCommands(CCommand *move, CCommand *setting) {
 	m_localOperations.insert('S'); //save record as file
 	m_localOperations.insert('L'); //load record file
 	m_localOperations.insert('G'); //grab
+	m_localOperations.insert('n'); //clear command list
+	m_localOperations.insert('N'); //navigation into memory
+	m_localOperations.insert('D'); //move direct with navigation from memory
+	m_localOperations.insert('B'); //move reverse with navigation from memory
 	m_localOperations.insert('p'); //print menu
 	m_droid = NULL;
 	m_isStopped = false;
@@ -129,7 +138,7 @@ int CCommCommands::executeLocal(const char *operation) {
 	memset(message, 0, 255 * sizeof(char));
 	char * newOperation;
 	switch (operation[0]) {
-	case 'T':
+	case 'T': {
 		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
 		strncpy(newOperation, operation, strlen(operation));
 		removeCommandPrefix(newOperation);
@@ -139,7 +148,8 @@ int CCommCommands::executeLocal(const char *operation) {
 		free(newOperation);
 		m_hasAck = true;
 		return 0;
-	case 't':
+	}
+	case 't': {
 		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
 		strncpy(newOperation, operation, strlen(operation));
 		removeCommandPrefix(newOperation);
@@ -149,42 +159,44 @@ int CCommCommands::executeLocal(const char *operation) {
 		free(newOperation);
 		m_hasAck = false;
 		return 0;
-	case 'P':
-			newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
-			strncpy(newOperation, operation, strlen(operation));
-			removeCommandPrefix(newOperation);
-			//clear the #
-			newOperation[strlen(newOperation) -1] = '\0';
-			if (strlen(newOperation)==0) {
-				m_droid->setBlockingOperation(true);
-				for (vector<string *>::iterator in= m_recordMovement.begin(); in != m_recordMovement.end();in++) {
-					processInputData(*in);
-				}
-				m_droid->setBlockingOperation(false);
-			} else if (strlen(newOperation) == 1 && newOperation[0] == 'r') {
-				m_droid->setBlockingOperation(true);
-				//rotate 180 degree
-				string *pstr = new string("m0,1#");
-				processInputData(pstr);
-				processInputData(pstr);
-				for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
-					processInputData(*in, 1);
-				}
-				processInputData(pstr);
-				processInputData(pstr);
-				delete pstr;
-				m_droid->setBlockingOperation(false);
-			} else if (strlen(newOperation) == 1 && newOperation[0] == 'R') {
-				m_droid->setBlockingOperation(true);
-				for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
-					processInputData(*in, 2);
-				}
-				m_droid->setBlockingOperation(false);
+	}
+	case 'P': {
+		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
+		strncpy(newOperation, operation, strlen(operation));
+		removeCommandPrefix(newOperation);
+		//clear the #
+		newOperation[strlen(newOperation) -1] = '\0';
+		if (strlen(newOperation)==0) {
+			m_droid->setBlockingOperation(true);
+			for (vector<string *>::iterator in= m_recordMovement.begin(); in != m_recordMovement.end();in++) {
+				processInputData(*in);
 			}
-			free(newOperation);
-			m_hasAck = false;
-			break;
-	case 'R':
+			m_droid->setBlockingOperation(false);
+		} else if (strlen(newOperation) == 1 && newOperation[0] == 'r') {
+			m_droid->setBlockingOperation(true);
+			//rotate 180 degree
+			string *pstr = new string("m0,1#");
+			processInputData(pstr);
+			processInputData(pstr);
+			for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
+				processInputData(*in, 1);
+			}
+			processInputData(pstr);
+			processInputData(pstr);
+			delete pstr;
+			m_droid->setBlockingOperation(false);
+		} else if (strlen(newOperation) == 1 && newOperation[0] == 'R') {
+			m_droid->setBlockingOperation(true);
+			for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
+				processInputData(*in, 2);
+			}
+			m_droid->setBlockingOperation(false);
+		}
+		free(newOperation);
+		m_hasAck = false;
+		break;
+	}
+	case 'R': {
 		if (strlen(operation) != 3) {
 			sprintf(message, "Invalid Command with data command = %s\n", operation);
 			m_logger->error(message);
@@ -214,6 +226,7 @@ int CCommCommands::executeLocal(const char *operation) {
 		m_logger->error(message);
 		m_hasAck = false;
 		return 1;
+	}
 	case 'S': {
 		cout<<"Receive S but ... "<<operation<<endl<<flush;
 		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
@@ -258,6 +271,8 @@ int CCommCommands::executeLocal(const char *operation) {
 			sprintf(message, "Invalid filename for loading = %s\n", newOperation);
 			m_logger->error(message);
 			m_hasAck = false;
+			free(newOperation);
+			free(buffer);
 			return 1;
 		}
 		while(!pFile->eof()) {
@@ -265,10 +280,11 @@ int CCommCommands::executeLocal(const char *operation) {
 			m_recordMovement.push_back(new string(buffer));
 		}
 		pFile->close();
+		free(buffer);
 		free(newOperation);
 		break;
 	}
-	case 'G':
+	case 'G': {
 		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
 		strncpy(newOperation, operation, strlen(operation));
 		removeCommandPrefix(newOperation);
@@ -287,12 +303,134 @@ int CCommCommands::executeLocal(const char *operation) {
 		}
 		free(newOperation);
 		break;
-	case 'p':
+	}
+	case 'p': {
 		m_moveCommand->printMenu();
 		m_settingCommand->printMenu();
 		printMenu();
 		m_hasAck = false;
 		break;
+	}
+	case 'n' : {
+		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
+		strncpy(newOperation, operation, strlen(operation));
+		removeCommandPrefix(newOperation);
+		//clear the #
+		newOperation[strlen(newOperation) -1] = '\0';
+		if (strlen(newOperation) == 0) {
+			for (vector<string *>::iterator in= m_recordMovement.begin(); in != m_recordMovement.end();in++) {
+				delete *in;
+			}
+			m_recordMovement.clear();
+		}
+		m_hasAck = true;
+		return result;
+	}
+	case 'N': {
+		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
+		strncpy(newOperation, operation, strlen(operation));
+		removeCommandPrefix(newOperation);
+		//clear the #
+		newOperation[strlen(newOperation) -1] = '\0';
+		if ( newOperation[0] == 'f' ) { //file operations
+			if ( newOperation[1] == 's') {
+				char *fileName = newOperation + 2;
+				pFile = new std::ofstream(fileName,std::ios::out | std::ios::app | std::ios::ate);
+				if (!pFile->good()) {
+					if (pFile->is_open())
+						pFile->close();
+					sprintf(message, "Invalid filename for saving = %s\n", fileName);
+					m_logger->error(message);
+					free(newOperation);
+					m_hasAck = false;
+					return 1;
+				}
+				for (int i = 0; i < (m_recordMovement.size() - 1); i++) {
+					(*pFile)<<*m_recordMovement.at(i)<<std::endl<<flush;
+				}
+				(*pFile)<<*m_recordMovement.at(m_recordMovement.size() - 1)<<flush;
+				pFile->close();
+				delete pFile;
+			} else if ( newOperation[1] == 'l' ) {
+				char *fileName = newOperation + 2;
+				for (vector<string *>::iterator in= m_recordMovement.begin(); in != m_recordMovement.end();in++) {
+					delete *in;
+				}
+				m_recordMovement.clear();
+				char *buffer = (char *)calloc(256, sizeof(char));
+				std::ifstream *pFile = new std::ifstream(fileName);
+				if (!pFile->good()) {
+					if (pFile->is_open())
+						pFile->close();
+					sprintf(message, "Invalid filename for loading = %s\n", newOperation);
+					m_logger->error(message);
+					m_hasAck = false;
+					free(newOperation);
+					free(buffer);
+					return 1;
+				}
+				while(!pFile->eof()) {
+					pFile->getline(buffer, 256, '\n');
+					m_recordMovement.push_back(new string(buffer));
+				}
+				pFile->close();
+				free(buffer);
+			}
+		} else {
+			string *command;
+			//readd the #
+			//newOperation[strlen(newOperation) + 1] = '#';
+			command = new string(newOperation);
+			command->append("#");
+			m_recordMovement.push_back(command);
+			free(newOperation);
+			m_hasAck = true;
+			return result;
+		}
+		free(newOperation);
+		break;
+	}
+	case 'D': {
+		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
+		strncpy(newOperation, operation, strlen(operation));
+		removeCommandPrefix(newOperation);
+		//clear the #
+		newOperation[strlen(newOperation) -1] = '\0';
+		if (strlen(newOperation) == 0) {
+			m_droid->setBlockingOperation(true);
+			for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
+				processInputData(*in, 2);
+			}
+			m_droid->setBlockingOperation(false);
+		}
+		free(newOperation);
+		m_hasAck = true;
+		return result;
+	}
+	case 'B': {
+		newOperation = (char *)calloc(strlen(operation) +1, sizeof(char));
+		strncpy(newOperation, operation, strlen(operation));
+		removeCommandPrefix(newOperation);
+		//clear the #
+		newOperation[strlen(newOperation) -1] = '\0';
+		if (strlen(newOperation) == 0) {
+			m_droid->setBlockingOperation(true);
+			//rotate 180 degree
+			string *pstr = new string("m0,1#");
+			processInputData(pstr);
+			processInputData(pstr);
+			for (vector<string *>::reverse_iterator in= m_recordMovement.rbegin(); in != m_recordMovement.rend();in++) {
+				processInputData(*in, 1);
+			}
+			processInputData(pstr);
+			processInputData(pstr);
+			delete pstr;
+			m_droid->setBlockingOperation(false);
+		}
+		free(newOperation);
+		m_hasAck = true;
+		return result;
+	}
 	default:
 		sprintf(message, "Invalid Command with data command = %s\n", operation);
 		m_logger->error(message);

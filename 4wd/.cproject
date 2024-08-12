@@ -39,11 +39,11 @@
 							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.587713975" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.include.paths.1291901919" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/pigpio"/>
-									<listOptionValue builtIn="false" value="/home/onion/robotics/drivers/raspberrypi/include"/>
-									<listOptionValue builtIn="false" value="/home/onion/robotics/framework/raspberrypi/include"/>
 									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/libs/raspicam/src"/>
 									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/include/c++/10.3.1"/>
 									<listOptionValue builtIn="false" value="/home/onion/raspberrypi/tools/arm-bcm2708/arm-linux-gnueabihf/include/c++/10.3.1/bits"/>
+									<listOptionValue builtIn="false" value="/home/onion/micro/raspberrypiZeroDroid/framework/include"/>
+									<listOptionValue builtIn="false" value="/home/onion/micro/raspberrypiZeroDroid/drivers/include"/>
 								</option>
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="gnu.cpp.compiler.option.preprocessor.def.650473552" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG_MODE=1"/>

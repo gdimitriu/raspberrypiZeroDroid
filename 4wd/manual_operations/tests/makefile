@@ -11,7 +11,7 @@ ifeq (raspberry, $(OS_TYPE))
 	endif
 endif	
 
-EXECUTABLES = testMenuStdout testMenuBle moveManualDroidStd moveManualDroidBleHC05 moveManualDroidBle moveManualDroidEsp01 moveManualDroidWifiBleStd
+EXECUTABLES = testMenuStdout testMenuBle moveManualDroidStd moveManualDroidBleHC05 moveManualDroidBle moveManualDroidEsp01 moveManualDroidWifiBleStd moveManualDroidWifiStd
 
 FLAGS = -std=gnu++11 -ggdb
 
@@ -37,6 +37,10 @@ moveManualDroidEsp01: moveManualDroidEsp01.cpp ../CCommand.h ../CMoveCommand.h .
 
 moveManualDroidWifiBleStd: moveManualDroidWifiBleStd.cpp ../CCommand.h ../CMoveCommand.h ../CSettingCommand.h ../CCommandEsp01.h ../CBLECommand.h ../CCommandStd.h
 	$(CXX) -fPIC -o moveManualDroidWifiBleStd moveManualDroidWifiBleStd.cpp $(OBJECTS) $(LIB_DIRS) $(LIBS) $(INCLUDES) $(FLAGS) -Wno-write-strings
+
+moveManualDroidWifiStd: moveManualDroidWifiStd.cpp ../CCommand.h ../CMoveCommand.h ../CSettingCommand.h ../CCommandEsp01.h ../CBLECommand.h ../CCommandStd.h
+	$(CXX) -fPIC -o moveManualDroidWifiStd moveManualDroidWifiBleStd.cpp $(OBJECTS) $(LIB_DIRS) $(LIBS) $(INCLUDES) $(FLAGS) -Wno-write-strings
+
 clean:
 	for object in $(EXECUTABLES);\
 	do \
