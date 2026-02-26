@@ -18,4 +18,3 @@ x wheel drive droid using Raspberry PI Zero W [droid_4wd](4wd/README.md)
 
 ## This droid could be commanded by the Robot Control Center.
 
-## This droid now is a submodule of swarm_robots (robots commanded using wifi from a normal PC with linux).
